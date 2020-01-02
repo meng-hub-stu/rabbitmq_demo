@@ -41,7 +41,7 @@ public class DirectReceiver {
              *  multiple：是否批量.true:将一次性拒绝所有小于deliveryTag的消息
              * <p>
              *  requeue：被拒绝的是否重新入队列，如果设置为true ，则会添加在队列的末端
-             *      PS: 此时最好限制一下异常多少次后(可以用redis计数)不再去消费，或者发邮件通知开发人员,否则有可能会一直异常下去
+             *      PS: 此时最好限制一下异常多少次后(可以用redis计数)不再重新入队列，或者发邮件通知开发人员,否则有可能会一直异常下去
              * </p>
              */
 //            channel.basicNack(deliveryTag, false, true);
