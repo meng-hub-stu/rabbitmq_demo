@@ -25,9 +25,14 @@ public class DirectSender {
 
 
     public void send(Integer i) {
+        /*
+        注：虽然持久化消息可以做到消息不丢失，但持久化的消息在进入队列前会被写到磁盘，这个过程比写到内存慢得多，所以会严重的影响性能，
+        可能导致消息的吞吐量降低10倍不止。所以，在做消息持久化前，一定要认真考虑性能和需求之间的平衡
+         */
         String msg = "Hello Msg -->" + i;
         Message message = MessageBuilder.withBody(msg.getBytes()).build();
-        message.getMessageProperties().setDeliveryMode(MessageDeliveryMode.PERSISTENT);// 消息持久化
+        // 消息持久化
+        message.getMessageProperties().setDeliveryMode(MessageDeliveryMode.PERSISTENT);
         message.getMessageProperties().setContentType(MessageProperties.CONTENT_TYPE_JSON);
         rabbitTemplate.convertAndSend(RabbitMQConstant.EXCHANGE_DIRECT, RabbitMQConstant.ROUTING_KEY_EASY, message, new CorrelationData(UUID.randomUUID().toString().replaceAll("-", "")));
     }
