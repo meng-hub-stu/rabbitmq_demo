@@ -1,4 +1,4 @@
-//package com.qjc.mq.callbackconfig;
+//package com.qjc.mq.config;
 //
 //import com.qjc.mq.constant.RabbitMQConstant;
 //import org.springframework.amqp.core.AcknowledgeMode;
