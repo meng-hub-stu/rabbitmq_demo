@@ -30,7 +30,7 @@ public class QueueConfig {
     }
 
     @Bean(name = RabbitMQConstant.QUEUE_TOPIC_FIRST)
-    public Queue topicQueue() {
+    public Queue topicQueueFirst() {
         return new Queue(RabbitMQConstant.QUEUE_TOPIC_FIRST, true, false, false);
     }
 

@@ -21,7 +21,7 @@ public class FanoutSender {
 
 
     public void send(int i) {
-        rabbitTemplate.convertAndSend(RabbitMQConstant.EXCHANGE_FANOUT, RabbitMQConstant.ROUTING_KEY_TOPIC_FIRST, i, new CorrelationData(UUID.randomUUID().toString().replaceAll("-", "")));
+        rabbitTemplate.convertAndSend(RabbitMQConstant.EXCHANGE_FANOUT, "", i, new CorrelationData(UUID.randomUUID().toString().replaceAll("-", "")));
     }
 
 

@@ -21,8 +21,15 @@ public class RabbitMQConstant {
     //路由key
     public static final String ROUTING_KEY_EASY = "routing.key.easy";
     public static final String ROUTING_KEY_WORK = "routing.key.work";
-    public static final String ROUTING_KEY_TOPIC_FIRST = "routing.key.topic.first";
-    public static final String ROUTING_KEY_TOPIC_SECOND = "routing.key.topic.second";
+    // 除了一下两个路由的日志，其他的日志比如sh.info.log都会发送失败
+    /**
+     * 北京服务器所有的日志
+     */
+    public static final String ROUTING_KEY_TOPIC_BJ_LOG = "bj.#";
+    /**
+     * 所有error级别的日志
+     */
+    public static final String ROUTING_KEY_TOPIC_ERROR_LOG = "*.error.log";
 
 
     // direct交换机

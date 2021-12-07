@@ -47,13 +47,19 @@ public class RabbitMqConfig {
     }
 
     @Bean
-    public Binding bindingTopic() {
-        return BindingBuilder.bind(queueConfig.topicQueue()).to(exchangeConfig.topicExchange()).with(RabbitMQConstant.ROUTING_KEY_TOPIC_FIRST);
+    public Binding bindingTopicFirst() {
+        /**
+         * 将bj.#的日志路由到topic.queue.first队列上
+         */
+        return BindingBuilder.bind(queueConfig.topicQueueFirst()).to(exchangeConfig.topicExchange()).with(RabbitMQConstant.ROUTING_KEY_TOPIC_BJ_LOG);
     }
 
     @Bean
     public Binding bindingTopicSecond() {
-        return BindingBuilder.bind(queueConfig.topicQueueSecond()).to(exchangeConfig.topicExchange()).with(RabbitMQConstant.ROUTING_KEY_TOPIC_SECOND);
+        /**
+         * 将*.error.log的日志路由到topic.queue.second队列上
+         */
+        return BindingBuilder.bind(queueConfig.topicQueueSecond()).to(exchangeConfig.topicExchange()).with(RabbitMQConstant.ROUTING_KEY_TOPIC_ERROR_LOG);
     }
 
     @Bean

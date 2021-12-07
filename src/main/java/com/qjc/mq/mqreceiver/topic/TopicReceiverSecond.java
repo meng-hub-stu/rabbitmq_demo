@@ -11,18 +11,12 @@ import org.springframework.stereotype.Component;
  * @Date: 2019/12/6
  */
 @Component
-@RabbitListener(queues = RabbitMQConstant.QUEUE_TOPIC_FIRST)
 public class TopicReceiverSecond {
 
+    @RabbitListener(queues = RabbitMQConstant.QUEUE_TOPIC_SECOND)
     @RabbitHandler
-    public void process(Integer neo) {
-        try {
-            // 设置消费者1处理消息用时**ms，另外一个消费者2处理消息用时***ms，由于消费者1消费速度快，所以消费者1可以执行更多的任务。
-            Thread.sleep(1000);
-            System.err.println("消费者22222接收到的消息: " + neo);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    public void process(String msg) {
+        System.out.println("222222222222222消费者topic.queue.second接收到的消息: " + msg);
     }
 
 

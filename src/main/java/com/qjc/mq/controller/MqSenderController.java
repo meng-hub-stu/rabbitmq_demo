@@ -39,9 +39,9 @@ public class MqSenderController {
     FanoutSender fanoutSender;
 
     /**
-     * 测试简单模式
+     * 测试简单模式： http://localhost:8899/direct
      */
-    @RequestMapping(value = "/direct/sender", method = {RequestMethod.GET})
+    @RequestMapping(value = "/direct", method = {RequestMethod.GET})
     public void directSender() {
         for (int i = 0; i < 1; i++) {
             directSender.send(i);
@@ -49,9 +49,9 @@ public class MqSenderController {
     }
 
     /**
-     * 测试work模式
+     * 测试work模式： http://localhost:8899/work
      */
-    @RequestMapping(value = "/work/sender", method = {RequestMethod.GET})
+    @RequestMapping(value = "/work", method = {RequestMethod.GET})
     public void workSender() {
         for (int i = 0; i < 10; i++) {
             workSender.send(i);
@@ -59,9 +59,9 @@ public class MqSenderController {
     }
 
     /**
-     * 测试topic模式
+     * 测试topic模式： http://localhost:8899/topic
      */
-    @RequestMapping(value = "/topic/sender", method = {RequestMethod.GET})
+    @RequestMapping(value = "/topic", method = {RequestMethod.GET})
     public void topicSender() {
         for (int i = 0; i < 10; i++) {
             topicSender.send(i);
@@ -69,9 +69,9 @@ public class MqSenderController {
     }
 
     /**
-     * 测试fanout模式
+     * 测试fanout模式： http://localhost:8899/fanout
      */
-    @RequestMapping(value = "/fanout/sender", method = {RequestMethod.GET})
+    @RequestMapping(value = "/fanout", method = {RequestMethod.GET})
     public void fanoutSender() {
         for (int i = 0; i < 10; i++) {
             fanoutSender.send(i);

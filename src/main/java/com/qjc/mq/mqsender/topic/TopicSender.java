@@ -6,6 +6,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.Random;
 import java.util.UUID;
 
 /**
@@ -19,10 +20,15 @@ public class TopicSender {
     @Resource
     RabbitTemplate rabbitTemplate;
 
+    private String[] address = {"bj", "sh"};
+    private String[] level = {"error", "info"};
+    private Random random = new Random();
+
 
     public void send(int i) {
-        rabbitTemplate.convertAndSend(RabbitMQConstant.EXCHANGE_TOPIC, RabbitMQConstant.ROUTING_KEY_TOPIC_FIRST, i, new CorrelationData(UUID.randomUUID().toString().replaceAll("-", "")));
-//        rabbitTemplate.convertAndSend(RabbitMQConstant.EXCHANGE_TOPIC, RabbitMQConstant.ROUTING_KEY_TOPIC_SECOND, i, new CorrelationData(UUID.randomUUID().toString().replaceAll("-", "")));
+        String routingKey = address[random.nextInt(address.length)] + "." + level[random.nextInt(level.length)] + ".log";
+        String message = routingKey + "-----" + i;
+        rabbitTemplate.convertAndSend(RabbitMQConstant.EXCHANGE_TOPIC, routingKey, message, new CorrelationData(UUID.randomUUID().toString().replaceAll("-", "")));
     }
 
 
