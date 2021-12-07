@@ -12,7 +12,7 @@ spring:
     # 如果使用自定义监听器，则下面的配置可以注释掉（也可以不用管）
     listener:
       simple:
-        acknowledge-mode: auto  #manual：采用手动应答；none：不确认；auto：自动确认，若采用手动确认，则需要自定义监听器，不使用@RabbitListener注解来消费消息
+        acknowledge-mode: auto  #manual：采用手动应答；none：不确认；auto：自动确认，若采用手动确认，可以自定义监听器，不使用@RabbitListener注解来消费消息
         prefetch: 1 #限制每次发送一条数据。
         concurrency: 1 #指定最小消费者数量
         max-concurrency: 1 #指定最大消费者数量

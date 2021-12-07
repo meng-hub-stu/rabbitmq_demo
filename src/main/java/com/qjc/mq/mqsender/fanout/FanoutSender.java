@@ -11,7 +11,7 @@ import java.util.UUID;
 /**
  * @Description:
  * @Author: qjc
- * @Date: 2019/12/6
+ * @Date: 2021/12/6
  */
 @Component
 public class FanoutSender {

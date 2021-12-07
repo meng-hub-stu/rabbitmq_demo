@@ -3,7 +3,7 @@ package com.qjc.mq.constant;
 /**
  * @Description:
  * @Author: qjc
- * @Date: 2019/12/6
+ * @Date: 2021/12/6
  */
 public class RabbitMQConstant {
 

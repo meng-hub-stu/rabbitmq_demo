@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * @Description:
  * @Author: qjc
- * @Date: 2019/12/6
+ * @Date: 2021/12/6
  */
 @Configuration
 public class QueueConfig {

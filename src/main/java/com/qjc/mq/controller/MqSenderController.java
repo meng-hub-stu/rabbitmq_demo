@@ -15,7 +15,7 @@ import javax.annotation.Resource;
 /**
  * @Description:
  * @Author: qjc
- * @Date: 2019/12/6
+ * @Date: 2021/12/6
  */
 @RestController
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT})

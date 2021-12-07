@@ -6,9 +6,9 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
 
 /**
- * @Description:
+ * @Description: 消息发送到交换机确认机制
  * @Author: qjc
- * @Date: 2019/12/10
+ * @Date: 2021/12/7
  */
 @Component
 @Slf4j
