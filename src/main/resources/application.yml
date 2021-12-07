@@ -6,12 +6,13 @@ spring:
     port: 5672
     username: guest
     password: guest
-    publisher-confirm-type: correlated  #消息发送到交换机确认机制，是否确认回调。correlated&simple相当于publisher-confirms: true，none相当于
-    publisher-returns: true   #  消息发送到队列确认机制,是否确认回调（消息发送失败返回队列中）
+    publisher-confirm-type: correlated  # 消息发送到交换机确认机制，是否确认回调。correlated&simple相当于publisher-confirms: true，none相当于publisher-confirms: false
+    publisher-returns: true   # 消息发送到队列确认机制，是否确认回调（消息发送失败返回队列中）
     virtual-host: /    #连接到rabbitMQ的vhost
+    # 如果使用自定义监听器，则下面的配置可以注释掉（也可以不用管）
     listener:
       simple:
-        acknowledge-mode: auto  #manual：采用手动应答；none：不确认；auto：自动确认
+        acknowledge-mode: auto  #manual：采用手动应答；none：不确认；auto：自动确认，若采用手动确认，则需要自定义监听器，不使用@RabbitListener注解来消费消息
         prefetch: 1 #限制每次发送一条数据。
         concurrency: 1 #指定最小消费者数量
         max-concurrency: 1 #指定最大消费者数量
