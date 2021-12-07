@@ -39,12 +39,12 @@ public class DirectReceiver {
              * void basicNack(long deliveryTag, boolean multiple, boolean requeue) throws IOException;
              *  deliveryTag:该消息的index
              *  multiple：是否批量.true:将一次性拒绝所有小于deliveryTag的消息
-             * <p>
              *  requeue：被拒绝的是否重新入队列，如果设置为true ，则会添加在队列的末端
              *      PS: 此时最好限制一下异常多少次后(可以用redis计数)不再重新入队列，或者发邮件通知开发人员,否则有可能会一直异常下去
-             * </p>
              */
 //            channel.basicNack(deliveryTag, false, true);
+            // 手动拒绝消息。第二个参数表示是否重新入列
+            // channel.basicReject(deliveryTag, true);
 
             // 如果捕获异常，重试机制会失效，所以最终还是需要抛出异常，才能进行重试消费
             throw new Exception("消费异常");
