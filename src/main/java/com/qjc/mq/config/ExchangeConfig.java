@@ -29,6 +29,21 @@ public class ExchangeConfig {
         return new DirectExchange(RabbitMQConstant.EXCHANGE_DIRECT, true, false);
     }
 
+    @Bean(name = RabbitMQConstant.EXCHANGE_TTL)
+    public DirectExchange ttlExchange() {
+        return new DirectExchange(RabbitMQConstant.EXCHANGE_TTL, true, false);
+    }
+
+    @Bean(name = RabbitMQConstant.EXCHANGE_DLX_NORMAL)
+    public DirectExchange dlxNormalExchange() {
+        return new DirectExchange(RabbitMQConstant.EXCHANGE_DLX_NORMAL, true, false);
+    }
+
+    @Bean(name = RabbitMQConstant.EXCHANGE_DLX)
+    public DirectExchange dlxExchange() {
+        return new DirectExchange(RabbitMQConstant.EXCHANGE_DLX, true, false);
+    }
+
     @Bean(name = RabbitMQConstant.EXCHANGE_WORK)
     public DirectExchange workExchange() {
         return new DirectExchange(RabbitMQConstant.EXCHANGE_WORK, true, false);

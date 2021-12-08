@@ -1,8 +1,10 @@
 package com.qjc.mq.controller;
 
 import com.qjc.mq.mqsender.direct.DirectSender;
+import com.qjc.mq.mqsender.dlx.DLXNormalSender;
 import com.qjc.mq.mqsender.fanout.FanoutSender;
 import com.qjc.mq.mqsender.topic.TopicSender;
+import com.qjc.mq.mqsender.ttl.TTLSender;
 import com.qjc.mq.mqsender.work.WorkSender;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +34,10 @@ public class MqSenderController {
     @Resource
     DirectSender directSender;
     @Resource
+    TTLSender ttlSender;
+    @Resource
+    DLXNormalSender dlxNormalSender;
+    @Resource
     WorkSender workSender;
     @Resource
     TopicSender topicSender;
@@ -45,6 +51,26 @@ public class MqSenderController {
     public void directSender() {
         for (int i = 0; i < 1; i++) {
             directSender.send(i);
+        }
+    }
+
+    /**
+     * 测试简单模式-消息&队列TTL： http://localhost:8899/ttl
+     */
+    @RequestMapping(value = "/ttl", method = {RequestMethod.GET})
+    public void directTTLSender() {
+        for (int i = 0; i < 10; i++) {
+            ttlSender.send(i);
+        }
+    }
+
+    /**
+     * 测试简单模式-DLX： http://localhost:8899/dlx
+     */
+    @RequestMapping(value = "/dlx", method = {RequestMethod.GET})
+    public void directDLXSender() {
+        for (int i = 0; i < 10; i++) {
+            dlxNormalSender.send(i);
         }
     }
 

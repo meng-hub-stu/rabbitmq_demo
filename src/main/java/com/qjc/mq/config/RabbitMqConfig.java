@@ -42,6 +42,21 @@ public class RabbitMqConfig {
     }
 
     @Bean
+    public Binding bindingDirectTTL() {
+        return BindingBuilder.bind(queueConfig.ttlQueue()).to(exchangeConfig.ttlExchange()).with(RabbitMQConstant.ROUTING_KEY_TTL);
+    }
+
+    @Bean
+    public Binding bindingDirectDLXNormal() {
+        return BindingBuilder.bind(queueConfig.dlxNormalQueue()).to(exchangeConfig.dlxNormalExchange()).with(RabbitMQConstant.ROUTING_KEY_DLX_NORMAL);
+    }
+
+    @Bean
+    public Binding bindingDirectDLX() {
+        return BindingBuilder.bind(queueConfig.dlxQueue()).to(exchangeConfig.dlxExchange()).with(RabbitMQConstant.ROUTING_KEY_DLX);
+    }
+
+    @Bean
     public Binding bindingWork() {
         return BindingBuilder.bind(queueConfig.workQueue()).to(exchangeConfig.workExchange()).with(RabbitMQConstant.ROUTING_KEY_WORK);
     }
