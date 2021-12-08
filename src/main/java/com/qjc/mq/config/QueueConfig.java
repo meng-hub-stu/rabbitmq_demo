@@ -42,7 +42,7 @@ public class QueueConfig {
 
     @Bean(name = RabbitMQConstant.QUEUE_DLX_NORMAL)
     public Queue dlxNormalQueue() {
-        Map<String, Object> arguments = new HashMap<>(2);
+        Map<String, Object> arguments = new HashMap<>(4);
         // 设置队列中所有消息过期时间30s
         arguments.put("x-message-ttl", 30000);
         // 设置该队列所关联的死信交换器（当队列消息TTL到期后依然没有被消费，则加入死信队列）
