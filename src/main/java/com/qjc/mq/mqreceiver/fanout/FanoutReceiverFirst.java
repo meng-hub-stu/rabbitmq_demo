@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  * @Date: 2021/12/6
  */
 @Component
-@RabbitListener(queues = RabbitMQConstant.QUEUE_FANOUT)
+@RabbitListener(queues = RabbitMQConstant.QUEUE_FANOUT_FIRST)
 public class FanoutReceiverFirst {
 
     @RabbitHandler

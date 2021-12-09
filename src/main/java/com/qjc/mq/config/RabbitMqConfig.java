@@ -79,7 +79,7 @@ public class RabbitMqConfig {
 
     @Bean
     public Binding bindingFanout() {
-        return BindingBuilder.bind(queueConfig.fanoutQueue()).to(exchangeConfig.fanoutExchange());
+        return BindingBuilder.bind(queueConfig.fanoutQueueFirst()).to(exchangeConfig.fanoutExchange());
     }
 
     @Bean

@@ -73,9 +73,9 @@ public class QueueConfig {
         return new Queue(RabbitMQConstant.QUEUE_TOPIC_SECOND, true, false, false);
     }
 
-    @Bean(name = RabbitMQConstant.QUEUE_FANOUT)
-    public Queue fanoutQueue() {
-        return new Queue(RabbitMQConstant.QUEUE_FANOUT, true, false, false);
+    @Bean(name = RabbitMQConstant.QUEUE_FANOUT_FIRST)
+    public Queue fanoutQueueFirst() {
+        return new Queue(RabbitMQConstant.QUEUE_FANOUT_FIRST, true, false, false);
     }
 
     @Bean(name = RabbitMQConstant.QUEUE_FANOUT_SECOND)

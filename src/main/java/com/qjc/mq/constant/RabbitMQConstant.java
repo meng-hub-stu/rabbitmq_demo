@@ -8,22 +8,22 @@ package com.qjc.mq.constant;
 public class RabbitMQConstant {
 
     /**
-     * 简单模式
+     * 路由(Direct)模式
      */
     public static final String QUEUE_EASY = "easy.queue";
     /**
-     * work模式
+     * Work模式
      */
     public static final String QUEUE_WORK = "work.queue";
     /**
-     * topic模式
+     * 主题(Topic)模式
      */
     public static final String QUEUE_TOPIC_FIRST = "topic.queue.first";
     public static final String QUEUE_TOPIC_SECOND = "topic.queue.second";
     /**
-     * 发布订阅模式
+     * 发布订阅/广播(Fanout)模式：不需要路由key
      */
-    public static final String QUEUE_FANOUT = "fanout.queue";
+    public static final String QUEUE_FANOUT_FIRST = "fanout.queue.first";
     public static final String QUEUE_FANOUT_SECOND = "fanout.queue.second";
     /**
      * 超时队列
@@ -33,52 +33,70 @@ public class RabbitMQConstant {
      * 死信队列
      */
     public static final String QUEUE_DLX = "dlx.queue";
+    /**
+     * 用来测试死信队列而创建的正常队列
+     */
     public static final String QUEUE_DLX_NORMAL = "dlx.queue.normal";
 
     /**
-     * 路由key
+     * 路由(Direct)模式路由key
      */
     public static final String ROUTING_KEY_EASY = "routing.key.easy";
+    /**
+     * Work模式路由key
+     */
     public static final String ROUTING_KEY_WORK = "routing.key.work";
     /**
-     * 除了一下两个路由的日志，其他的日志比如sh.info.log都会发送失败
+     * 主题(Topic)模式路由key：除了一下两个路由的日志，其他的日志比如sh.info.log都会发送失败
      */
     /**
-     * 北京服务器所有的日志
+     * 主题(Topic)模式路由key：北京服务器所有的日志
      */
     public static final String ROUTING_KEY_TOPIC_BJ_LOG = "bj.#";
     /**
-     * 所有error级别的日志
+     * 主题(Topic)模式路由key：所有error级别的日志
      */
     public static final String ROUTING_KEY_TOPIC_ERROR_LOG = "*.error.log";
+    /**
+     * 超时队列路由key
+     */
     public static final String ROUTING_KEY_TTL = "routing.key.ttl";
+    /**
+     * 死信队列路由key
+     */
     public static final String ROUTING_KEY_DLX = "routing.key.dlx";
+    /**
+     * 用来测试死信队列而创建的正常路由key
+     */
     public static final String ROUTING_KEY_DLX_NORMAL = "routing.key.dlx.normal";
 
     /**
-     * direct交换机
+     * Direct交换机
      */
     public static final String EXCHANGE_DIRECT = "direct_exchange";
     /**
-     * work交换机
+     * Work交换机
      */
     public static final String EXCHANGE_WORK = "work_exchange";
     /**
-     * topic交换机
+     * Topic交换机
      */
     public static final String EXCHANGE_TOPIC = "topic_exchange";
     /**
-     * fanout交换机
+     * Fanout交换机
      */
     public static final String EXCHANGE_FANOUT = "fanout_exchange";
     /**
-     * ttl交换器
+     * Direct交换机：ttl超时交换器
      */
     public static final String EXCHANGE_TTL = "ttl_exchange";
     /**
-     * 死信交换器
+     * Direct交换机：dlx死信交换器
      */
     public static final String EXCHANGE_DLX = "dlx_exchange";
+    /**
+     * Direct交换机：用来测试死信队列而创建的正常交换器
+     */
     public static final String EXCHANGE_DLX_NORMAL = "dlx_exchange_normal";
 
 }
