@@ -34,7 +34,7 @@ public class DirectSender {
         // 消息持久化
         message.getMessageProperties().setDeliveryMode(MessageDeliveryMode.PERSISTENT);
         message.getMessageProperties().setContentType(MessageProperties.CONTENT_TYPE_JSON);
-        rabbitTemplate.convertAndSend(RabbitMQConstant.EXCHANGE_DIRECT, RabbitMQConstant.ROUTING_KEY_EASY, message, new CorrelationData(UUID.randomUUID().toString().replaceAll("-", "")));
+        rabbitTemplate.convertAndSend(RabbitMQConstant.EXCHANGE_DIRECT, RabbitMQConstant.ROUTING_KEY_DIRECT, message, new CorrelationData(UUID.randomUUID().toString().replaceAll("-", "")));
     }
 
 

@@ -10,7 +10,7 @@ public class RabbitMQConstant {
     /**
      * 路由(Direct)模式
      */
-    public static final String QUEUE_EASY = "easy.queue";
+    public static final String QUEUE_DIRECT = "direct.queue";
     /**
      * Work模式
      */
@@ -41,7 +41,7 @@ public class RabbitMQConstant {
     /**
      * 路由(Direct)模式路由key
      */
-    public static final String ROUTING_KEY_EASY = "routing.key.easy";
+    public static final String ROUTING_KEY_DIRECT = "routing.key.direct";
     /**
      * Work模式路由key
      */

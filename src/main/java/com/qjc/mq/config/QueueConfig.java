@@ -22,9 +22,9 @@ public class QueueConfig {
      * auto-delete 表示消息队列没有在使用时将被自动删除 默认是false
      */
 
-    @Bean(name = RabbitMQConstant.QUEUE_EASY)
-    public Queue easyQueue() {
-        return new Queue(RabbitMQConstant.QUEUE_EASY, true, false, false);
+    @Bean(name = RabbitMQConstant.QUEUE_DIRECT)
+    public Queue directQueue() {
+        return new Queue(RabbitMQConstant.QUEUE_DIRECT, true, false, false);
     }
 
     @Bean(name = RabbitMQConstant.QUEUE_TTL)

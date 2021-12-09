@@ -26,19 +26,12 @@ public class RabbitMqConfig {
     private QueueConfig queueConfig;
     @Resource
     private ExchangeConfig exchangeConfig;
-    /**
-     * 连接工厂
-     */
     @Resource
     private ConnectionFactory connectionFactory;
 
-
-    /**
-     * 将消息队列和交换机进行绑定，指定路由
-     */
     @Bean
     public Binding bindingDirect() {
-        return BindingBuilder.bind(queueConfig.easyQueue()).to(exchangeConfig.directExchange()).with(RabbitMQConstant.ROUTING_KEY_EASY);
+        return BindingBuilder.bind(queueConfig.directQueue()).to(exchangeConfig.directExchange()).with(RabbitMQConstant.ROUTING_KEY_DIRECT);
     }
 
     @Bean

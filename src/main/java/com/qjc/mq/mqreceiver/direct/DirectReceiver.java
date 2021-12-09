@@ -18,7 +18,7 @@ import java.io.IOException;
 @Slf4j
 public class DirectReceiver {
 
-    @RabbitListener(queues = RabbitMQConstant.QUEUE_EASY)
+    @RabbitListener(queues = RabbitMQConstant.QUEUE_DIRECT)
     public void process(Message message, Channel channel) throws Exception {
         String messageContent = new String(message.getBody());
         log.info("消费者接收消息: " + messageContent);
