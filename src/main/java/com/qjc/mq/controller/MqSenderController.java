@@ -1,15 +1,13 @@
 package com.qjc.mq.controller;
 
+import com.qjc.mq.mqsender.delay.DelaySender;
 import com.qjc.mq.mqsender.direct.DirectSender;
 import com.qjc.mq.mqsender.dlx.DLXNormalSender;
 import com.qjc.mq.mqsender.fanout.FanoutSender;
 import com.qjc.mq.mqsender.topic.TopicSender;
 import com.qjc.mq.mqsender.ttl.TTLSender;
 import com.qjc.mq.mqsender.work.WorkSender;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -43,6 +41,8 @@ public class MqSenderController {
     TopicSender topicSender;
     @Resource
     FanoutSender fanoutSender;
+    @Resource
+    DelaySender delaySender;
 
     /**
      * 测试简单模式： http://localhost:8899/direct
@@ -102,6 +102,17 @@ public class MqSenderController {
         for (int i = 0; i < 10; i++) {
             fanoutSender.send(i);
         }
+    }
+
+    /**
+     * 测试fanout模式： http://localhost:8899/delay/20
+     * PS：要实现延迟队列，必须安装rabbitmq_delayed_message_exchange插件
+     *
+     * @param seconds 多少秒后开会
+     */
+    @RequestMapping(value = "/delay/{seconds}", method = {RequestMethod.GET})
+    public String delaySender(@PathVariable Integer seconds) {
+        return delaySender.send(seconds);
     }
 
 

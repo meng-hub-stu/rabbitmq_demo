@@ -83,5 +83,12 @@ public class QueueConfig {
         return new Queue(RabbitMQConstant.QUEUE_FANOUT_SECOND, true, false, false);
     }
 
+    /**
+     * PS：要实现延迟队列，必须安装rabbitmq_delayed_message_exchange插件
+     */
+    @Bean(name = RabbitMQConstant.QUEUE_DELAY)
+    public Queue delayQueue() {
+        return new Queue(RabbitMQConstant.QUEUE_DELAY, true, false, false);
+    }
 
 }

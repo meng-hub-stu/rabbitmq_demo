@@ -80,6 +80,13 @@ public class RabbitMqConfig {
         return BindingBuilder.bind(queueConfig.fanoutQueueSecond()).to(exchangeConfig.fanoutExchange());
     }
 
+    @Bean
+    public Binding bindingDelay() {
+        // 使用自定义交换器时后面需要添加.noargs()
+//        return BindingBuilder.bind(queueConfig.delayQueue()).to(exchangeConfig.delayExchange()).with(RabbitMQConstant.ROUTING_KEY_DELAY).noargs();
+        return BindingBuilder.bind(queueConfig.delayQueue()).to(exchangeConfig.delayExchange()).with(RabbitMQConstant.ROUTING_KEY_DELAY);
+    }
+
     /** ======================== 定制一些处理策略 =============================*/
 
     /**

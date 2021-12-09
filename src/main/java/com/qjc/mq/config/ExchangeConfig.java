@@ -1,11 +1,12 @@
 package com.qjc.mq.config;
 
 import com.qjc.mq.constant.RabbitMQConstant;
-import org.springframework.amqp.core.DirectExchange;
-import org.springframework.amqp.core.FanoutExchange;
-import org.springframework.amqp.core.TopicExchange;
+import org.springframework.amqp.core.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @Description:
@@ -57,6 +58,20 @@ public class ExchangeConfig {
     @Bean(name = RabbitMQConstant.EXCHANGE_FANOUT)
     public FanoutExchange fanoutExchange() {
         return new FanoutExchange(RabbitMQConstant.EXCHANGE_FANOUT, true, false);
+    }
+
+    /**
+     * PS：要实现延迟队列，必须安装rabbitmq_delayed_message_exchange插件
+     */
+    @Bean(name = RabbitMQConstant.EXCHANGE_DELAY)
+    public DirectExchange delayExchange() {
+        DirectExchange directExchange = new DirectExchange(RabbitMQConstant.EXCHANGE_DELAY, true, false);
+        directExchange.setDelayed(true);
+        return directExchange;
+//        // 使用自定义交换器
+//        Map<String, Object> props = new HashMap<>(2);
+//        props.put("x-delayed-type", ExchangeTypes.FANOUT);
+//        return new CustomExchange(RabbitMQConstant.EXCHANGE_DELAY, "x-delayed-message", true, false, props);
     }
 
 }
