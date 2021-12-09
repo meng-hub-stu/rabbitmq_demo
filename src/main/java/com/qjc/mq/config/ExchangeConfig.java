@@ -61,7 +61,7 @@ public class ExchangeConfig {
     }
 
     /**
-     * PS：要实现延迟队列，必须安装rabbitmq_delayed_message_exchange插件
+     * PS：安装rabbitmq_delayed_message_exchange插件，使用延迟队列
      */
     @Bean(name = RabbitMQConstant.EXCHANGE_DELAY)
     public DirectExchange delayExchange() {

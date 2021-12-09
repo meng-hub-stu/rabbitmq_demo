@@ -36,7 +36,7 @@ public class RabbitMQConstant {
      */
     public static final String EXCHANGE_DLX_NORMAL = "dlx_exchange_normal";
     /**
-     * 延迟交换器 PS：要实现延迟队列，必须安装rabbitmq_delayed_message_exchange插件
+     * 延迟交换器 PS：安装rabbitmq_delayed_message_exchange插件，使用延迟队列
      */
     public static final String EXCHANGE_DELAY = "delay_exchange";
 
@@ -72,7 +72,7 @@ public class RabbitMQConstant {
      */
     public static final String QUEUE_DLX_NORMAL = "dlx.queue.normal";
     /**
-     * 延迟队列 PS：要实现延迟队列，必须安装rabbitmq_delayed_message_exchange插件
+     * 延迟队列 PS：安装rabbitmq_delayed_message_exchange插件，使用延迟队列
      */
     public static final String QUEUE_DELAY = "delay.queue";
 
@@ -109,7 +109,7 @@ public class RabbitMQConstant {
      */
     public static final String ROUTING_KEY_DLX_NORMAL = "routing.key.dlx.normal";
     /**
-     * 延迟队列路由key PS：要实现延迟队列，必须安装rabbitmq_delayed_message_exchange插件
+     * 延迟队列路由key PS：安装rabbitmq_delayed_message_exchange插件，使用延迟队列
      */
     public static final String ROUTING_KEY_DELAY = "routing.key.delay";
 
