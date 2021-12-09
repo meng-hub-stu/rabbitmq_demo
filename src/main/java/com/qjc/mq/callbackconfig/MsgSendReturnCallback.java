@@ -1,5 +1,6 @@
 package com.qjc.mq.callbackconfig;
 
+import com.qjc.mq.constant.RabbitMQConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -27,6 +28,11 @@ public class MsgSendReturnCallback implements RabbitTemplate.ReturnCallback {
      */
     @Override
     public void returnedMessage(Message message, int replyCode, String replyText, String exchange, String routingKey) {
+        if (exchange.equals(RabbitMQConstant.EXCHANGE_DELAY)) {
+            // 如果配置了发送回调ReturnCallback，rabbitmq_delayed_message_exchange插件会回调该方法，因为发送方确实没有投递到队列上，只是在交换器上暂存，等过期/时间到了才会发往队列。
+            // 所以如果是延迟队列的交换器，则直接放过，并不是bug
+            return;
+        }
         String correlationId = message.getMessageProperties().getCorrelationId();
         log.debug("消息：{} 发送失败, 应答码：{} 原因：{} 交换机: {}  路由键: {}", correlationId, replyCode, replyText, exchange, routingKey);
     }
