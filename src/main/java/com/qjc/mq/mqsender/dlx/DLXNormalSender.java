@@ -1,5 +1,6 @@
 package com.qjc.mq.mqsender.dlx;
 
+import cn.hutool.core.date.DateUtil;
 import com.qjc.mq.constant.RabbitMQConstant;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageBuilder;
@@ -10,6 +11,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -24,14 +26,15 @@ public class DLXNormalSender {
     RabbitTemplate rabbitTemplate;
 
 
-    public void send(Integer i) {
-        String msg = "Hello Msg -->" + i;
+    public String send(Integer seconds) {
+        String msg = "下单时间：" + DateUtil.format(new Date(), "yyyy-MM-dd HH:mm:ss") + "，支付有效期" + seconds + "秒的订单支付到期，查看支付状态";
         Message message = MessageBuilder.withBody(msg.getBytes()).build();
         // 消息持久化
         message.getMessageProperties().setDeliveryMode(MessageDeliveryMode.PERSISTENT);
         message.getMessageProperties().setContentType(MessageProperties.CONTENT_TYPE_JSON);
-        // 消息设置过期时间10s（超过10s没有被消费，则消息变成死信，会进入死信队列）
-        message.getMessageProperties().setExpiration("10000");
+        // 消息设置过期时间seconds秒（超过seconds秒没有被消费，则消息变成死信，会进入死信队列）
+        message.getMessageProperties().setExpiration(String.valueOf(seconds * 1000));
         rabbitTemplate.convertAndSend(RabbitMQConstant.EXCHANGE_DLX_NORMAL, RabbitMQConstant.ROUTING_KEY_DLX_NORMAL, message, new CorrelationData(UUID.randomUUID().toString().replaceAll("-", "")));
+        return "下单成功，请在" + seconds + "秒内完成支付";
     }
 }

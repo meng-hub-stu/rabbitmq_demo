@@ -65,13 +65,11 @@ public class MqSenderController {
     }
 
     /**
-     * 测试简单模式-DLX： http://localhost:8899/dlx
+     * 测试简单模式-DLX： http://localhost:8899/dlx/20
      */
-    @RequestMapping(value = "/dlx", method = {RequestMethod.GET})
-    public void directDLXSender() {
-        for (int i = 0; i < 10; i++) {
-            dlxNormalSender.send(i);
-        }
+    @RequestMapping(value = "/dlx/{seconds}", method = {RequestMethod.GET})
+    public String directDLXSender(@PathVariable Integer seconds) {
+        return dlxNormalSender.send(seconds);
     }
 
     /**
