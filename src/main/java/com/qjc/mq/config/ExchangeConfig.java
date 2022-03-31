@@ -66,6 +66,7 @@ public class ExchangeConfig {
     @Bean(name = RabbitMQConstant.EXCHANGE_DELAY)
     public DirectExchange delayExchange() {
         DirectExchange directExchange = new DirectExchange(RabbitMQConstant.EXCHANGE_DELAY, true, false);
+        //这里是设置延迟队列，如不安装插件，就会启动报错
         directExchange.setDelayed(true);
         return directExchange;
 //        // 使用自定义交换器
