@@ -1,0 +1,31 @@
+server:
+  port: 8899
+spring:
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+    publisher-confirm-type: correlated  # 消息发送到交换机确认机制，是否确认回调。correlated&simple相当于publisher-confirms: true，none相当于publisher-confirms: false
+    publisher-returns: true   # 消息发送到队列确认机制，是否确认回调（消息发送失败返回队列中）
+
+    virtual-host: /    #连接到rabbitMQ的vhost
+    # 如果使用自定义监听器，则下面的配置可以注释掉（也可以不用管）
+    listener:
+      simple:
+        acknowledge-mode: manual  #manual：采用手动应答；none：不确认；auto：自动确认，若采用手动确认，可以自定义监听器，不使用@RabbitListener注解来消费消息
+        prefetch: 1 #限制每次发送一条数据。
+        concurrency: 1 #指定最小消费者数量
+        max-concurrency: 1 #指定最大消费者数量
+        default-requeue-rejected: false  #重试超过最大次数后是否拒绝
+        retry:
+          enabled: true #是否开启消费者重试（为false时关闭消费者重试，意思不是“不重试”，而是消费端代码异常会一直重复收到消息直到ack确认或者一直到超时）
+          max-attempts: 5 #最大重试次数
+          initial-interval: 500 #重试间隔时间（单位毫秒）第一次和第二次尝试发布或传递消息之间的间隔
+          max-interval: 1000 #重试最大时间间隔（单位毫秒）
+          multiplier: 5 #应用于上一重试间隔的乘数
+logging:
+  level:
+    com:
+      qjc:
+        mq: debug
